@@ -7,7 +7,7 @@ class Pokemon:
         self, num: int, name: str, types: List[str],
         male_ratio: float, baseStats: Dict[str, int],
         abilities: List[str], height: int, weight: int,
-        color: str, egg_groups: List[str]
+        color: str, egg_groups: List[str], prevo: str = None
     ):
         self.__index_num: int = num
         self.__name: str = name
@@ -24,6 +24,7 @@ class Pokemon:
         self.__weight: int = weight
         self.__color: str = color
         self.__egg_groups: List[str] = egg_groups
+        self.__prevo: str = prevo
 
     @classmethod
     def from_json(cls, j: Dict):
@@ -36,7 +37,8 @@ class Pokemon:
             j["baseStats"],
             [j["abilities"][k] for k in j["abilities"] if k != 'H'],
             j["heightm"], j["weightkg"],
-            j["color"], j["eggGroups"]
+            j["color"], j["eggGroups"],
+            None if "prevo" not in j else j["prevo"]
         )
 
 
@@ -50,7 +52,8 @@ class Pokemon:
                 f"abilities: {self.__abilities}\n" +\
                 f"height: {self.__height}m\t" +\
                 f"weight: {self.__weight}kg\t" +\
-                f"color: {self.__color}\t" + f"male ratio: {self.__male_ratio}"
+                f"color: {self.__color}\t" + f"male ratio: {self.__male_ratio}\n" +\
+                f"prevo: {self.__prevo}"
 
     @staticmethod
     def get_male_ratio_from_json(j: Dict) -> float:

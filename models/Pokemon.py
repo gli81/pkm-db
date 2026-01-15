@@ -3,6 +3,14 @@
 from typing import List
 
 class Pokemon:
+    """
+    index_num, name, name_cn, types, abilities
+    base_stats
+    base_points
+    height, weight, color
+    egg_groups, prevo
+
+    """
     def __init__(
         self, num: int, name: str, types: List[str],
         male_ratio: float, baseStats: Dict[str, int],

@@ -1,17 +1,6 @@
 # -*- coding: utf-8 -*-
 
 
-class Type:
-    """
-    num, name, name_cn
-    """
-    def __init__(
-        self, num: int, name: str, name_cn: str
-    ):
-        self.__num = num
-        self.__name = name
-        self.__name_cn = name_cn
-
 NUM_TYPES: int = 19
 """
 TYPE_LST
@@ -32,9 +21,12 @@ TYPE_NAME: List[str] = [
     "Poison", "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost",
     "Dragon", "Dark", "Steel", "Fairy", "???"
 ]
-## fill the TYPE_LST
+TYPE_NAME_IND = {}
+TYPE_NAME_CN_IND = {}
 for i in range(NUM_TYPES):
-    TYPE_LST[i] = Type(i, TYPE_NAME[i], TYPE_NAME_CN[i])
+    TYPE_NAME_IND[TYPE_NAME[i]] = i
+    TYPE_NAME_CN_IND[TYPE_NAME_CN[i]] = i
+
 
 """
 EFFECTIVE_MAT
@@ -144,3 +136,62 @@ def check_col(i: int, target: List[int]) -> None:
     assert [weak_to, resists, immune] == target,\
         f"Type {TYPE_NAME[i]} defensive not lining up: " +\
         f"{[weak_to, resists, immune]} - {target}"
+
+
+class Type:
+    """
+    num, name, name_cn
+    """
+    def __init__(
+        self, num: int = None, name: str = None, name_cn: str = None
+    ):
+        assert num is not None or name is not None or name_cn is not None,\
+            "Not valid type"
+        if num is not None:
+            assert name is None or name == TYPE_NAME[num],\
+                "Type num and English name don't match"
+            name = TYPE_NAME[num]
+            assert name_cn is None or name_cn == TYPE_NAME_CN[num],\
+                "Type num and Chinese name don't match"
+            name_cn = TYPE_NAME_CN[num]
+        else:
+            ## num is None
+            if name is not None:
+                num = TYPE_NAME_IND[name]
+                ## check name_cn and name have same num
+                assert name_cn is None or name_cn == TYPE_NAME_CN[num],\
+                    "Type Chinese name and English name don't match"
+            else:
+                ## name is None, name_cn can't be None
+                num = TYPE_NAME_CN_IND[name_cn]
+                name = TYPE_NAME[num]
+        self.__num = num
+        self.__name = name
+        self.__name_cn = name_cn
+        self.__super_effective = []
+        self.__not_very_effective = []
+        self.__no_effect = []
+        self.__weak_to = []
+        self.__resists = []
+        self.__immune = []
+        for i in range(NUM_TYPES):
+            if EFFECTIVE_MAT[self.__num][i] == 2:
+                self.__super_effective.append(i)
+            elif EFFECTIVE_MAT[self.__num][i] == 0.5:
+                self.__not_very_effective.append(i)
+            elif EFFECTIVE_MAT[self.__num][i] == 0:
+                self.__no_effect.append(i)
+            if EFFECTIVE_MAT[i][self.__num] == 2:
+                self.__weak_to.append(i)
+            elif EFFECTIVE_MAT[i][self.__num] == 0.5:
+                self.__resists.append(i)
+            elif EFFECTIVE_MAT[i][self.__num] == 0:
+                self.__immune.append(i)
+
+
+    def __str__(self) -> str:
+        return f"{self.__name} type\t{self.__name_cn}"
+
+## fill the TYPE_LST
+for i in range(NUM_TYPES):
+    TYPE_LST[i] = Type(i, TYPE_NAME[i], TYPE_NAME_CN[i])

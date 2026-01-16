@@ -187,10 +187,18 @@ class Type:
                 self.__resists.append(i)
             elif EFFECTIVE_MAT[i][self.__num] == 0:
                 self.__immune.append(i)
+        print(self)
 
 
     def __str__(self) -> str:
-        return f"{self.__name} type\t{self.__name_cn}"
+        return f"{self.__name} type\n\tWeak to: "+\
+            f"{", ".join(map(lambda x:TYPE_NAME[x], self.__weak_to))}" +\
+            f"\n\tResists: {", ".join([TYPE_NAME[x] for x in self.__resists])}" +\
+            f"\n\tImmune: {", ".join([TYPE_NAME[x] for x in self.__immune])}" +\
+            f"\n\tSuper effective: {", ".join([TYPE_NAME[x] for x in self.__super_effective])}" +\
+            f"\n\tNot very effective: {", ".join([TYPE_NAME[x] for x in self.__not_very_effective])}" +\
+            f"\n\tNo effect: {", ".join([TYPE_NAME[x] for x in self.__no_effect])}"
+
 
 ## fill the TYPE_LST
 for i in range(NUM_TYPES):

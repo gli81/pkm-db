@@ -40,7 +40,8 @@ def main():
                 #         j["color"], j["eggGroups"]
                 #     )
                 # )
-                print(Pokemon.from_json(pkm_dict[pk_name]))
+                # print(Pokemon.from_json(pkm_dict[pk_name]))
+                Pokemon.from_json(pkm_dict[pk_name])
         except KeyError as ke:
             print(f"{pk_name} no ...")
 

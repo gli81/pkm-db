@@ -2,11 +2,13 @@
 
 from json import loads
 from json.decoder import JSONDecodeError
-from typing import Dict
+# from typing import Dict
 import traceback
+from .models.Type import initialize_types
 from .models.Pokemon import Pokemon
-from .models.Type import constant_checking
+from .type_effectiveness import constant_checking
 import os
+from .constants import TYPE_LST
  
 
 PKM_LIST_DIR: str = os.path.join(
@@ -16,7 +18,9 @@ PKM_LIST_DIR: str = os.path.join(
 
 def main():
     constant_checking()
+    initialize_types()
     ## read file from resource
+    
     with open(PKM_LIST_DIR, 'r', encoding="utf-8") as f:
         try:
             ## json load
@@ -44,6 +48,7 @@ def main():
                 Pokemon.from_json(pkm_dict[pk_name])
         except KeyError as ke:
             print(f"{pk_name} no ...")
+    print(TYPE_LST)
 
 if __name__ == "__main__":
     main()

@@ -1,2 +1,4 @@
 __pycache__
 a.txt
+.vscode
+.DS_Store

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from typing import List
 
 NUM_TYPES: int = 19
 """

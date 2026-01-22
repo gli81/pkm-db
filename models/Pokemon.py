@@ -14,8 +14,10 @@ class Pokemon:
     def __init__(
         self, num: int, name: str, types: List[str],
         male_ratio: float, baseStats: Dict[str, int],
-        abilities: List[str], height: int, weight: int,
-        color: str, egg_groups: List[str], prevo: str = None
+        abilities: List[str],
+        height: int, weight: int,
+        color: str, egg_groups: List[str], prevo: str = None,
+        basePoints: List[int] = None
     ):
         self.__index_num: int = num
         self.__name: str = name
@@ -28,6 +30,7 @@ class Pokemon:
         self.__spd: int = baseStats["spd"]
         self.__spe: int = baseStats["spe"]
         self.__abilities = abilities
+        self.__basePoints: List[int] = basePoints
         self.__height: int = height
         self.__weight: int = weight
         self.__color: str = color

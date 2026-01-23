@@ -2,25 +2,33 @@
 
 from json import loads
 from json.decoder import JSONDecodeError
-# from typing import Dict
 import traceback
-from .models.Type import initialize_types
+from .models.Type import Type
 from .models.Pokemon import Pokemon
 from .type_effectiveness import constant_checking
 import os
-from .constants import TYPE_LST
- 
+from .constants import TYPE_LST, NUM_TYPES, TYPE_NAME, TYPE_NAME_CN
 
 PKM_LIST_DIR: str = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), "./resources/pkm.json"
 )
+
+def initialize_types() -> None:
+    """
+    Populate `constants.TYPE_LST` with the 19 `Type` instances.
+    Safe to call multiple times; initialization happens only once.
+    """
+    # already initialized?
+    if TYPE_LST[0] is not None:
+        return
+    for i in range(NUM_TYPES):
+        TYPE_LST[i] = Type(i, TYPE_NAME[i], TYPE_NAME_CN[i])
 
 
 def main():
     constant_checking()
     initialize_types()
     ## read file from resource
-    
     with open(PKM_LIST_DIR, 'r', encoding="utf-8") as f:
         try:
             ## json load

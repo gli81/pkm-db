@@ -82,6 +82,9 @@ class Type:
             f"\n\tNot very effective: {", ".join([TYPE_NAME[x] for x in self.__not_very_effective])}" +\
             f"\n\tNo effect: {", ".join([TYPE_NAME[x] for x in self.__no_effect])}"
 
+    def __repr__(self) -> str:
+        return self.__str__()
+
 
 def initialize_types() -> None:
     """

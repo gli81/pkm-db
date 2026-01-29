@@ -18,7 +18,7 @@ def initialize_types() -> None:
     Populate `constants.TYPE_LST` with the 19 `Type` instances.
     Safe to call multiple times; initialization happens only once.
     """
-    # already initialized?
+    ## check if already initialized
     if TYPE_LST[0] is not None:
         return
     for i in range(NUM_TYPES):
@@ -26,8 +26,8 @@ def initialize_types() -> None:
 
 
 def main():
-    constant_checking()
     initialize_types()
+    constant_checking()
     ## read file from resource
     with open(PKM_LIST_DIR, 'r', encoding="utf-8") as f:
         try:

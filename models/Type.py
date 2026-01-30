@@ -70,7 +70,7 @@ class Type:
                 self.__resists.append(i)
             elif EFFECTIVE_MAT[i][self.__num] == 0:
                 self.__immune.append(i)
-        print(self)
+        # print(self)
 
 
     def __str__(self) -> str:

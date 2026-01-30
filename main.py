@@ -3,6 +3,7 @@
 from json import loads
 from json.decoder import JSONDecodeError
 import traceback
+from .CmdParser import CmdParser
 from .models.Type import Type
 from .models.Pokemon import Pokemon
 from .type_effectiveness import constant_checking
@@ -40,6 +41,7 @@ def main():
             print(traceback.format_exc())
             quit()
     ## format 1-386 pkm
+    pkm_lst = []
     for pk_name in pkm_dict:
         try:
             if "num" in pkm_dict[pk_name] and 0 < pkm_dict[pk_name]["num"] <=386:
@@ -53,11 +55,15 @@ def main():
                 #         j["color"], j["eggGroups"]
                 #     )
                 # )
-                print(Pokemon.from_json(pkm_dict[pk_name]))
-                Pokemon.from_json(pkm_dict[pk_name])
+                # print(Pokemon.from_json(pkm_dict[pk_name]))
+                pkm_lst.append(Pokemon.from_json(pkm_dict[pk_name]))
         except KeyError as ke:
             print(f"{pk_name} no ...")
-    print(TYPE_LST)
+    # print(TYPE_LST)
+    parser = CmdParser()
+    while True:
+        cmd = input("Please enter command\n> ")
+        print(parser.parse(cmd))
 
 if __name__ == "__main__":
     main()

@@ -64,6 +64,7 @@ def main():
     while True:
         cmd = input("Please enter command\n> ")
         print(parser.parse(cmd))
+        print()
 
 if __name__ == "__main__":
     main()

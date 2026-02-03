@@ -84,6 +84,9 @@ class Type:
 
     def __repr__(self) -> str:
         return self.__str__()
+    
+    def getName(self) -> str:
+        return self.__name
 
 
 def initialize_types() -> None:

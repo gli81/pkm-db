@@ -34,10 +34,10 @@ def main():
         try:
             ## json load
             pkm_dict = loads(f.read())
-        except JSONDecodeError as e:
+        except JSONDecodeError:
             print("Invalid JSON")
             quit()
-        except Exception as e:
+        except Exception:
             print(traceback.format_exc())
             quit()
     ## format 1-386 pkm
@@ -57,7 +57,7 @@ def main():
                 # )
                 # print(Pokemon.from_json(pkm_dict[pk_name]))
                 pkm_lst.append(Pokemon.from_json(pkm_dict[pk_name]))
-        except KeyError as ke:
+        except KeyError:
             print(f"{pk_name} no ...")
     # print(TYPE_LST)
     parser = CmdParser()

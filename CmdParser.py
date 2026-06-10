@@ -5,13 +5,18 @@ from typing import Dict
 
 class CmdParser:
     def __init__(self):
-        pass
+        self.__help_txt = "Commands:\n" +\
+            "\tq type <TypeName>\tshow type matchups\n" +\
+            "\tquit\t\t\texit"
 
     def parse(self, command: str) -> str | Dict[str, str]:
         c = command.strip()
-        if c.lower() == "quit":
+        c_lower = c.lower()
+        if c_lower == "quit":
             exit(0)
-        elif c.lower().startswith("q"):
+        elif c_lower == "help" or c_lower == 'h':
+            return self.__help_txt
+        elif c_lower.startswith("q"):
             c_lst = c.split(' ')
             if len(c_lst) == 3:
                 if c_lst[1].lower() == "type" and c_lst[2].capitalize() in TYPE_NAME:

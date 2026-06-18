@@ -3,7 +3,7 @@
 from typing import List, TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from .models.Type import Type
+    from pmdb.models.Type import Type
 
 NUM_TYPES: int = 19
 TYPE_LST: List[Type] = [None] * NUM_TYPES

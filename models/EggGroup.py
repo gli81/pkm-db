@@ -6,7 +6,7 @@ class EggGroup:
 
     """
     def __init__(
-        self, egg_group_num: int, name: str, name_cn: str = None
+        self, egg_group_num: int, name: str, name_cn: str | None = None
     ):
         self.__index = egg_group_num
         self.__name = name

@@ -1,0 +1,4 @@
+{
+  "extraPaths": [".."]
+  // vscode warning silencer
+}

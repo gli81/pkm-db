@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from .constants import TYPE_NAME, TYPE_LST
+from pmdb.constants import TYPE_NAME, TYPE_LST
 from typing import Dict
 
 class CmdParser:

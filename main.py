@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from json import loads
 from json.decoder import JSONDecodeError
 import traceback
-from .CmdParser import CmdParser
-from .models.Type import Type
-from .models.Pokemon import Pokemon
-from .type_effectiveness import constant_checking
+from pmdb.CmdParser import CmdParser
+from pmdb.models import Type, Pokemon
+from pmdb.type_effectiveness import constant_checking
 import os
-from .constants import TYPE_LST, NUM_TYPES, TYPE_NAME, TYPE_NAME_CN
+from pmdb.constants import TYPE_LST, NUM_TYPES, TYPE_NAME, TYPE_NAME_CN
 
 PKM_LIST_DIR: str = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), "./resources/pkm.json"

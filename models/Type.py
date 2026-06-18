@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from typing import List
-from ..type_effectiveness import EFFECTIVE_MAT
-from ..constants import NUM_TYPES, TYPE_NAME, TYPE_NAME_CN, TYPE_LST
+from pmdb.type_effectiveness import EFFECTIVE_MAT
+from pmdb.constants import NUM_TYPES, TYPE_NAME, TYPE_NAME_CN, TYPE_LST
 
 """
 TYPE_LST

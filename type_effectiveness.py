@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from typing import List
-from .constants import NUM_TYPES, TYPE_NAME
+from pmdb.constants import NUM_TYPES, TYPE_NAME
 
 """
 EFFECTIVE_MAT

@@ -9,8 +9,13 @@ Usage:
 """
 
 import argparse
+import io
 import json
 import os
+import sys
+
+if sys.stdout.encoding.lower() != "utf-8":
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
 from .name_map import build_name_map
 from .parse_pokemon import parse_evolution, parse_learnset

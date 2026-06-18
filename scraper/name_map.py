@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from bs4 import BeautifulSoup
+from urllib.parse import unquote
 from .fetch import fetch_page
 
 # Master list page title on 52poke
@@ -17,7 +18,7 @@ def build_name_map() -> dict[int, str]:
 
     for link in soup.select("table.roundy a[href*='/wiki/']"):
         href = link.get("href", "")
-        name = href.split("/wiki/")[-1]
+        name = unquote(href.split("/wiki/")[-1])
         # the cell before or sibling text should have the dex number
         # try to find the number from the parent row
         tr = link.find_parent("tr")

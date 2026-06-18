@@ -26,7 +26,9 @@ class Type:
     num, name, name_cn
     """
     def __init__(
-        self, num: int = None, name: str = None, name_cn: str = None
+        self, num: int | None = None,
+        name: str | None = None,
+        name_cn: str | None = None
     ):
         assert num is not None or name is not None or name_cn is not None,\
             "Not valid type"

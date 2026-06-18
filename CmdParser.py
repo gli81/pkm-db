@@ -21,6 +21,6 @@ class CmdParser:
             if len(c_lst) == 3:
                 if c_lst[1].lower() == "type" and c_lst[2].capitalize() in TYPE_NAME:
                     for t in TYPE_LST:
-                        if t.getName() == c_lst[2].capitalize():
+                        if t and t.getName() == c_lst[2].capitalize():
                             return t
         return "Invalid command"

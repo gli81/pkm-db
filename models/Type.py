@@ -27,8 +27,8 @@ class Type:
     """
     def __init__(
         self, num: Optional[int] = None,
-        name: str | None = None,
-        name_cn: str | None = None
+        name: Optional[str] = None,
+        name_cn: Optional[str] = None
     ):
         assert num is not None or name is not None or name_cn is not None,\
             "Not valid type"
@@ -43,12 +43,14 @@ class Type:
             ## num is None
             if name is not None:
                 num = TYPE_NAME_IND[name]
+                assert num is not None
                 ## check name_cn and name have same num
                 assert name_cn is None or name_cn == TYPE_NAME_CN[num],\
                     "Type Chinese name and English name don't match"
             else:
                 ## name is None, name_cn can't be None
                 num = TYPE_NAME_CN_IND[name_cn]
+                assert num is not None
                 name = TYPE_NAME[num]
         self.__num = num
         self.__name = name
@@ -77,12 +79,12 @@ class Type:
 
     def __str__(self) -> str:
         return f"{self.__name} type\n\tWeak to: "+\
-            f"{", ".join(map(lambda x:TYPE_NAME[x], self.__weak_to))}" +\
-            f"\n\tResists: {", ".join([TYPE_NAME[x] for x in self.__resists])}" +\
-            f"\n\tImmune: {", ".join([TYPE_NAME[x] for x in self.__immune])}" +\
-            f"\n\tSuper effective: {", ".join([TYPE_NAME[x] for x in self.__super_effective])}" +\
-            f"\n\tNot very effective: {", ".join([TYPE_NAME[x] for x in self.__not_very_effective])}" +\
-            f"\n\tNo effect: {", ".join([TYPE_NAME[x] for x in self.__no_effect])}"
+            f'''{", ".join(map(lambda x:TYPE_NAME[x], self.__weak_to))}''' +\
+            f'''\n\tResists: {", ".join([TYPE_NAME[x] for x in self.__resists])}''' +\
+            f'''\n\tImmune: {", ".join([TYPE_NAME[x] for x in self.__immune])}''' +\
+            f'''\n\tSuper effective: {", ".join([TYPE_NAME[x] for x in self.__super_effective])}''' +\
+            f'''\n\tNot very effective: {", ".join([TYPE_NAME[x] for x in self.__not_very_effective])}''' +\
+            f'''\n\tNo effect: {", ".join([TYPE_NAME[x] for x in self.__no_effect])}'''
 
     def __repr__(self) -> str:
         return self.__str__()

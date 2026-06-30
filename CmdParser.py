@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from pmdb.constants import TYPE_NAME, TYPE_LST
-from typing import Dict
+from pmdb.constants import TYPE_NAME
+from pmdb.models.Type import TYPE_LST
+from typing import Union
 
 class CmdParser:
     def __init__(self):
@@ -9,7 +10,7 @@ class CmdParser:
             "\tq type <TypeName>\tshow type matchups\n" +\
             "\tquit\t\t\texit"
 
-    def parse(self, command: str) -> str | Dict[str, str]:
+    def parse(self, command: str) -> Union[str, dict[str, str]]:
         c = command.strip()
         c_lower = c.lower()
         if c_lower == "quit":
@@ -22,5 +23,5 @@ class CmdParser:
                 if c_lst[1].lower() == "type" and c_lst[2].capitalize() in TYPE_NAME:
                     for t in TYPE_LST:
                         if t and t.getName() == c_lst[2].capitalize():
-                            return t
+                            return t.__repr__()
         return "Invalid command"

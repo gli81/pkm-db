@@ -10,7 +10,8 @@ from pmdb.CmdParser import CmdParser
 from pmdb.models import Type, Pokemon
 from pmdb.type_effectiveness import constant_checking
 import os
-from pmdb.constants import TYPE_LST, NUM_TYPES, TYPE_NAME, TYPE_NAME_CN
+from pmdb.models.Type import TYPE_LST
+from pmdb.constants import NUM_TYPES, TYPE_NAME, TYPE_NAME_CN
 
 PKM_LIST_DIR: str = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), "./resources/pkm.json"

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from typing import List
+# from typing import List
 from pmdb.constants import NUM_TYPES, TYPE_NAME
 
 """
@@ -9,7 +9,7 @@ EFFECTIVE_MAT
     each row represents the coefficient of damage when a type attacking others
     each column represents the coefficient of damage when a type attacked by others
 """
-EFFECTIVE_MAT: List[List[float]] = [
+EFFECTIVE_MAT: list[list[float]] = [
     ## Normal Type
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0, 1, 1, 0.5, 1, 1],
     ## Fire
@@ -82,7 +82,7 @@ def constant_checking() -> None:
     for i in range(NUM_TYPES):
         check_col(i, COUNTS[i][3:])
 
-def check_row(i: int, target: List[int]) -> None:
+def check_row(i: int, target: list[int]) -> None:
     ## get counts of 2, 0.5, 0 in EFFECTIVE_MAT[i, :]
     super_effective = 0
     not_very_effective = 0
@@ -97,7 +97,7 @@ def check_row(i: int, target: List[int]) -> None:
     assert [super_effective, not_very_effective, no_effect] == target,\
         f"Type {TYPE_NAME[i]} offensive not lining up"
 
-def check_col(i: int, target: List[int]) -> None:
+def check_col(i: int, target: list[int]) -> None:
     ## get counts of 2, 0.5, 0 in EFFECTIVE_MAT[:, i]
     weak_to = 0
     resists = 0

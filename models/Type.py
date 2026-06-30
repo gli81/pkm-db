@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from typing import List
+from typing import List, Optional
 from pmdb.type_effectiveness import EFFECTIVE_MAT
 from pmdb.constants import NUM_TYPES, TYPE_NAME, TYPE_NAME_CN#, TYPE_LST
 
@@ -13,7 +13,7 @@ TYPE_LST
         Normal Fire Water Electric Grass Ice Fighting Poison Ground
         Flying Psychic Bug Rock Ghost Dragon Dark Steel Fairy ???
 """
-TYPE_LST: List[Type | None] = [None] * NUM_TYPES
+TYPE_LST: List[Optional[Type]] = [None] * NUM_TYPES
 
 TYPE_NAME_IND = {}
 TYPE_NAME_CN_IND = {}
@@ -26,7 +26,7 @@ class Type:
     num, name, name_cn
     """
     def __init__(
-        self, num: int | None = None,
+        self, num: Optional[int] = None,
         name: str | None = None,
         name_cn: str | None = None
     ):

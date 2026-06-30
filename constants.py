@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
-from typing import List, TYPE_CHECKING
+from typing import List#, TYPE_CHECKING
 
-if TYPE_CHECKING:
-    from pmdb.models.Type import Type
+# if TYPE_CHECKING:
+#     from pmdb.models.Type import Type
 
 NUM_TYPES: int = 19
-TYPE_LST: List[Type | None] = [None] * NUM_TYPES
+# TYPE_LST: List[Type | None] = [None] * NUM_TYPES
 ## TYPE_LST is declared here but populated at runtime
 TYPE_NAME_CN: List[str] = [
     "一般", "火", "水", "电", "草", "冰", "格斗", "毒", "地面", "飞行",

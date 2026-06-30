@@ -13,7 +13,7 @@ TYPE_LST
         Normal Fire Water Electric Grass Ice Fighting Poison Ground
         Flying Psychic Bug Rock Ghost Dragon Dark Steel Fairy ???
 """
-TYPE_LST: list[Optional[Type]] = [None] * NUM_TYPES
+TYPE_LST: list[Optional["Type"]] = [None] * NUM_TYPES
 
 TYPE_NAME_IND = {}
 TYPE_NAME_CN_IND = {}

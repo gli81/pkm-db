@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from typing import List, Dict
+from typing import List, Dict, Optional
 
 class Pokemon:
     """
@@ -13,16 +13,16 @@ class Pokemon:
     """
     def __init__(
         self, num: int, name: str, types: List[str],
-        male_ratio: float | None, baseStats: Dict[str, int],
+        male_ratio: Optional[float], baseStats: Dict[str, int],
         abilities: List[str],
         height: int, weight: int,
-        color: str, egg_groups: List[str], prevo: str | None = None,
-        basePoints: List[int] | None = None
+        color: str, egg_groups: List[str], prevo: Optional[str] = None,
+        basePoints: Optional[list[int]] = None
     ):
         self.__index_num: int = num
         self.__name: str = name
         self.__types: List[str] = types
-        self.__male_ratio: float | None = male_ratio
+        self.__male_ratio: Optional[float] = male_ratio
         self.__hp: int = baseStats["hp"]
         self.__atk: int = baseStats["atk"]
         self.__def: int = baseStats["def"]
@@ -30,12 +30,12 @@ class Pokemon:
         self.__spd: int = baseStats["spd"]
         self.__spe: int = baseStats["spe"]
         self.__abilities = abilities
-        self.__basePoints: List[int] | None = basePoints
+        self.__basePoints: Optional[list[int]] = basePoints
         self.__height: int = height
         self.__weight: int = weight
         self.__color: str = color
         self.__egg_groups: List[str] = egg_groups
-        self.__prevo: str | None = prevo
+        self.__prevo: Optional[str] = prevo
 
     @classmethod
     def from_json(cls, j: Dict):
@@ -67,7 +67,7 @@ class Pokemon:
                 f"prevo: {self.__prevo}"
 
     @staticmethod
-    def get_male_ratio_from_json(j: Dict) -> float | None:
+    def get_male_ratio_from_json(j: Dict) -> Optional[float]:
         if "genderRatio" in j:
             return j["genderRatio"]["M"]
         elif "gender" in j and j["gender"] == 'N':

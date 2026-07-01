@@ -14,7 +14,6 @@ TYPE_LST
         Flying Psychic Bug Rock Ghost Dragon Dark Steel Fairy ???
 """
 TYPE_LST: list[Optional["Type"]] = [None] * NUM_TYPES
-
 TYPE_NAME_IND = {}
 TYPE_NAME_CN_IND = {}
 for i in range(NUM_TYPES):
@@ -104,6 +103,3 @@ def initialize_types() -> None:
         return
     for i in range(NUM_TYPES):
         TYPE_LST[i] = Type(i, TYPE_NAME[i], TYPE_NAME_CN[i])
-
-
-

@@ -2,7 +2,7 @@
 
 from pmdb.constants import TYPE_NAME
 from pmdb.models.Type import TYPE_LST
-from typing import Union
+# from typing import Union
 
 class CmdParser:
     def __init__(self):
@@ -10,10 +10,10 @@ class CmdParser:
             "\tq type <TypeName>\tshow type matchups\n" +\
             "\tquit\t\t\texit"
 
-    def parse(self, command: str) -> Union[str, dict[str, str]]:
+    def parse(self, command: str) -> str:
         c = command.strip()
         c_lower = c.lower()
-        if c_lower == "quit":
+        if c_lower == "quit" or c_lower == "exit":
             exit(0)
         elif c_lower == "help" or c_lower == 'h':
             return self.__help_txt

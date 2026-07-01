@@ -2,7 +2,7 @@
 
 NUM_TYPES: int = 19
 # TYPE_LST: List[Type | None] = [None] * NUM_TYPES
-## TYPE_LST is declared here but populated at runtime
+## TYPE_LST used to be declared here but populated at runtime
 TYPE_NAME_CN: list[str] = [
     "一般", "火", "水", "电", "草", "冰", "格斗", "毒", "地面", "飞行",
     "超能力", "虫", "岩石", "幽灵", "龙", "恶", "钢", "妖精", "???"

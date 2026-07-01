@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from typing import List, Dict, Optional
+from typing import Optional
 
 class Pokemon:
     """
@@ -9,19 +9,18 @@ class Pokemon:
     base_points
     height, weight, color
     egg_groups, prevo
-
     """
     def __init__(
-        self, num: int, name: str, types: List[str],
-        male_ratio: Optional[float], baseStats: Dict[str, int],
-        abilities: List[str],
+        self, num: int, name: str, types: list[str],
+        male_ratio: Optional[float], baseStats: dict[str, int],
+        abilities: list[str],
         height: int, weight: int,
-        color: str, egg_groups: List[str], prevo: Optional[str] = None,
+        color: str, egg_groups: list[str], prevo: Optional[str] = None,
         basePoints: Optional[list[int]] = None
     ):
         self.__index_num: int = num
         self.__name: str = name
-        self.__types: List[str] = types
+        self.__types: list[str] = types
         self.__male_ratio: Optional[float] = male_ratio
         self.__hp: int = baseStats["hp"]
         self.__atk: int = baseStats["atk"]
@@ -34,11 +33,12 @@ class Pokemon:
         self.__height: int = height
         self.__weight: int = weight
         self.__color: str = color
-        self.__egg_groups: List[str] = egg_groups
+        self.__egg_groups: list[str] = egg_groups
         self.__prevo: Optional[str] = prevo
 
+
     @classmethod
-    def from_json(cls, j: Dict):
+    def from_json(cls, j: dict):
         """
         create Pokemon from json
         """
@@ -51,7 +51,6 @@ class Pokemon:
             j["color"], j["eggGroups"],
             None if "prevo" not in j else j["prevo"]
         )
-
 
     def __str__(self) -> str:
         return f"{self.__index_num} {self.__name}\n" +\
@@ -67,7 +66,7 @@ class Pokemon:
                 f"prevo: {self.__prevo}"
 
     @staticmethod
-    def get_male_ratio_from_json(j: Dict) -> Optional[float]:
+    def get_male_ratio_from_json(j: dict) -> Optional[float]:
         if "genderRatio" in j:
             return j["genderRatio"]["M"]
         elif "gender" in j and j["gender"] == 'N':
